@@ -2,6 +2,7 @@
 name = "index_datamanip"
 version = "0.5.0"
 authors = ["Sif <Sif>"]
+description = "Library for working with CoH's Pigg, MessageStore, and Parse7 (bin) formats"
 edition = "2018"
 license = "MIT OR Apache-2.0"
 include = ["Cargo.toml", "src/**/*.rs", "LICENSE-APACHE", "LICENSE-MIT"]
