@@ -3,6 +3,7 @@
 
 pub mod defs;
 pub mod error;
+pub mod objects;
 mod parse7;
 pub mod parse_messages;
 mod pigg;
