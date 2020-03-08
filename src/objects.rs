@@ -820,7 +820,7 @@ pub mod attrib_mod_param_structs {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
-#[serde(from = "u32")]
+#[serde(from = "u32", into = "u32")]
 pub enum AttackType {
     Ranged,
     Melee,
@@ -851,6 +851,25 @@ impl std::convert::From<u32> for AttackType {
             140 => AttackType::Psionic,
             144 => AttackType::Toxic,
             num => AttackType::Unknown(num),
+        }
+    }
+}
+
+impl std::convert::Into<u32> for AttackType {
+    fn into(self) -> u32 {
+        match self {
+            AttackType::Ranged => 104,
+            AttackType::Melee => 108,
+            AttackType::AOE => 112,
+            AttackType::Smashing => 116,
+            AttackType::Lethal => 120,
+            AttackType::Fire => 124,
+            AttackType::Cold => 128,
+            AttackType::Energy => 132,
+            AttackType::NegativeEnergy => 136,
+            AttackType::Psionic => 140,
+            AttackType::Toxic => 144,
+            AttackType::Unknown(num) => num,
         }
     }
 }
