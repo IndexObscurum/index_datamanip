@@ -4,6 +4,7 @@ use std::str;
 use nom::{bytes::complete::*, number::complete::*, IResult};
 use serde::de::{self, DeserializeOwned, IntoDeserializer, Visitor};
 
+use crate::common::parse_lstring;
 use crate::error::{Error, Result};
 
 /// Parses a byte buffer and string mapping into the given type T
@@ -162,11 +163,13 @@ impl<'de, 'a> de::Deserializer<'de> for &'a mut Deserializer<'de> {
         unimplemented!()
     }
 
-    fn deserialize_byte_buf<V>(self, _visitor: V) -> Result<V::Value>
+    fn deserialize_byte_buf<V>(self, visitor: V) -> Result<V::Value>
     where
         V: Visitor<'de>,
     {
-        unimplemented!()
+        let (new_input, s) = parse_lstring(self.input)?;
+        self.input = new_input;
+        visitor.visit_byte_buf(s.as_bytes().to_owned())
     }
 
     fn deserialize_option<V>(self, visitor: V) -> Result<V::Value>

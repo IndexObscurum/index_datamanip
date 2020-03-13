@@ -1,6 +1,6 @@
 [package]
 name = "index_datamanip"
-version = "0.5.1"
+version = "0.5.2"
 authors = ["Sif <Sif>"]
 description = "Library for working with CoH's Pigg, MessageStore, and Parse7 (bin) formats"
 repository = "https://github.com/IndexObscurum/index_datamanip"

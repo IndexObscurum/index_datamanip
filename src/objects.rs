@@ -2,6 +2,8 @@
 
 use serde::{Deserialize, Serialize};
 
+type LString = std::ffi::CString;
+
 #[derive(Debug, Serialize)]
 pub struct ArchetypeName {
     pub name: String,
@@ -872,4 +874,32 @@ impl std::convert::Into<u32> for AttackType {
             AttackType::Unknown(num) => num,
         }
     }
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct BoostSet {
+    pub name: String,
+    pub display_name: String,
+    pub group_name: String,
+    pub conversion_groups: Vec<String>,
+    pub powers: Vec<LString>,
+    pub boost_lists: Vec<BoostList>,
+    pub bonuses: Vec<BoostSetBonus>,
+    pub min_level: u32,
+    pub max_level: u32,
+    pub store_product: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct BoostList {
+    pub boosts: Vec<LString>,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct BoostSetBonus {
+    pub display_text: String,
+    pub min_boosts: u32,
+    pub max_boosts: u32,
+    pub requires: Vec<String>,
+    pub auto_powers: Vec<LString>,
+    pub bonus_power: LString,
 }
